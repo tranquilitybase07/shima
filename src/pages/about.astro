@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import MainBio from "../components/about/MainBio.astro";
+import Story from "../components/about/Story.astro";
+import Work from "../components/about/Work.astro";
+import AboutTalk from "../components/about/AboutTalk.astro";
+import AboutContact from "../components/about/AboutContact.astro";
+---
+
+<Layout title="About — Arushima" background="ruled">
+  <Nav active="about" />
+
+  <header id="top" class="max-w-[860px] mx-auto px-5 pt-[50px] pb-4">
+    <h1 class="font-display m-0 leading-[0.9]" style="font-size:clamp(56px,12vw,120px);">
+      ABOUT
+    </h1>
+  </header>
+
+  <MainBio />
+  <Story />
+  <Work />
+  <AboutTalk />
+  <AboutContact />
+
+  <Footer />
+</Layout>

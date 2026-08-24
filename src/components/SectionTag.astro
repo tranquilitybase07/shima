@@ -1,0 +1,16 @@
+---
+// Small tilted sticker label used to head each About section.
+interface Props {
+  bg?: string;
+  fg?: string;
+  rot?: number;
+}
+const { bg = "#F4C020", fg = "#111", rot = -3 } = Astro.props;
+---
+
+<div
+  class="inline-block border-[1.5px] border-ink px-3 py-[4px] font-mono text-[11px] font-bold tracking-[0.08em] shadow-hard-2"
+  style={`background:${bg};color:${fg};transform:rotate(${rot}deg);`}
+>
+  <slot />
+</div>

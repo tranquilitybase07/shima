@@ -1,0 +1,47 @@
+---
+import { caseStudy, meta } from "../../data/casestudy";
+---
+
+<header class="max-w-[900px] mx-auto px-5 pt-[44px] pb-6">
+  <div class="font-mono text-[11px] tracking-[0.08em] text-ink/70 mb-3 flex items-center gap-2">
+    <span class="text-ink">●</span> {caseStudy.date}
+  </div>
+
+  <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+    <!-- Title block -->
+    <div class="md:max-w-[440px]">
+      <h1 class="font-display m-0 leading-[0.9]" style="font-size:clamp(48px,9vw,92px);">
+        {caseStudy.title}
+      </h1>
+      <p class="text-[14px] leading-[1.55] text-ink/80 mt-3 mb-4 max-w-[360px]">
+        {caseStudy.subtitle}
+      </p>
+      <div class="flex flex-wrap gap-2">
+        {
+          caseStudy.tags.map((t) => (
+            <span class="border-[1.5px] border-ink rounded-[6px] px-3 py-[5px] font-mono text-[10px] font-bold tracking-[0.08em] bg-paper shadow-hard-2">
+              {t}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Meta swatches -->
+    <div class="grid grid-cols-2 gap-3 shrink-0">
+      {
+        meta.map((m, i) => (
+          <div
+            class="border-[1.5px] border-ink rounded-[8px] px-4 py-3 w-[150px] shadow-hard-2"
+            style={`background:${m.bg};transform:rotate(${i % 2 === 0 ? -2 : 2}deg);`}
+          >
+            <div class="font-mono text-[9px] font-bold tracking-[0.12em] text-ink/60">
+              {m.label}
+            </div>
+            <div class="text-[12px] font-semibold leading-[1.3] mt-1">{m.value}</div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</header>

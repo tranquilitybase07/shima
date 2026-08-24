@@ -1,0 +1,33 @@
+---
+import ImageSlot from "../ImageSlot.astro";
+import { moreProjects } from "../../data/casestudy";
+---
+
+<section class="max-w-[900px] mx-auto px-5 py-10">
+  <h2 class="font-script text-[22px] text-ink mb-5">more projects</h2>
+
+  <div class="grid gap-6 sm:grid-cols-2">
+    {
+      moreProjects.map((p) => (
+        <a href="/case-study" class="block group">
+          <div class="flex">
+            <div class="inline-flex items-center gap-2 bg-[#EFE9DA] border-[1.5px] border-ink border-b-0 rounded-t-[8px] px-3 py-[5px] font-mono text-[10px] font-bold">
+              <span>●</span> {p.date}
+            </div>
+          </div>
+          <div class="border-[1.5px] border-ink rounded-b-[10px] rounded-tr-[10px] overflow-hidden shadow-hard-3 bg-[#EFE9DA] p-3">
+            <div class="relative border-[1.5px] border-ink rounded-[4px] overflow-hidden" style="height:210px;">
+              <ImageSlot id={p.slot} shape="rect" placeholder="project" />
+            </div>
+            <div class="text-center px-2 pt-4 pb-2">
+              <h3 class="font-bold text-[20px] m-0">{p.title}</h3>
+              <p class="text-[12px] leading-[1.5] text-ink/65 mt-1 max-w-[280px] mx-auto">
+                {p.desc}
+              </p>
+            </div>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</section>

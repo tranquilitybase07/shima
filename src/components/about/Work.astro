@@ -1,0 +1,29 @@
+---
+import SectionTag from "../SectionTag.astro";
+import { work } from "../../data/about";
+---
+
+<section class="max-w-[860px] mx-auto px-5 py-10">
+  <div class="mb-5">
+    <SectionTag bg="#3AC7F0" rot={-3}>WORK</SectionTag>
+  </div>
+
+  <div
+    class="border-[1.5px] border-blue rounded-[14px] bg-blue/5 shadow-hard-3 divide-y divide-ink/10"
+  >
+    {
+      work.map((job) => (
+        <div class="flex items-center gap-3 px-5 py-4">
+          <span class="text-blue text-[10px]">●</span>
+          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 flex-1">
+            <span class="font-bold text-[14px]">{job.role}</span>
+            <span class="text-[13px] text-ink/55">{job.company}</span>
+          </div>
+          <span class="bg-blue text-ink border-[1.5px] border-ink rounded-[5px] px-[9px] py-[3px] font-mono text-[10px] font-bold tracking-[0.06em] whitespace-nowrap">
+            {job.period}
+          </span>
+        </div>
+      ))
+    }
+  </div>
+</section>

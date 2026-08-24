@@ -1,0 +1,66 @@
+---
+import SectionTag from "../SectionTag.astro";
+import ImageSlot from "../ImageSlot.astro";
+import { bioLead, bioBody, bioNotes } from "../../data/about";
+import { firstName } from "../../data/portfolio";
+---
+
+<section class="max-w-[860px] mx-auto px-5 pt-6 pb-10">
+  <div class="mb-5">
+    <SectionTag bg="#F4C020" rot={-3}>MAIN BIO</SectionTag>
+  </div>
+
+  <div
+    class="relative border-[1.5px] border-ink rounded-[14px] bg-paper shadow-hard-4 px-6 py-7 md:pr-[190px]"
+  >
+    <!-- Polaroid -->
+    <div
+      class="hidden md:block absolute right-5 -top-4 w-[130px] bg-paper border-[1.5px] border-ink px-2 pt-2 pb-6 shadow-hard-3"
+      style="transform:rotate(4deg);"
+    >
+      <span class="tape" style="left:34px;top:-11px;"></span>
+      <div class="relative w-full h-[130px]">
+        <ImageSlot id="about_portrait" shape="rect" placeholder="portrait" />
+      </div>
+      <div class="font-mono text-[9px] text-ink/50 mt-1 text-right">2026</div>
+      <div
+        class="absolute -bottom-3 left-4 bg-yellow border-[1.5px] border-ink px-[10px] py-[2px] font-mono text-[9px] font-bold"
+        style="transform:rotate(-3deg);"
+      >
+        {firstName.toUpperCase()}
+      </div>
+    </div>
+
+    <!-- Handwritten lead -->
+    <p class="font-script text-[22px] leading-[1.5] text-ink m-0 mb-5 max-w-[440px]">
+      {bioLead}
+    </p>
+
+    <!-- Body copy -->
+    {
+      bioBody.map((para) => (
+        <p class="text-[13px] leading-[1.6] text-ink/85 m-0 mb-4 max-w-[460px]">
+          {para}
+        </p>
+      ))
+    }
+
+    <!-- Sticky-note call-outs -->
+    <div class="mt-6 flex flex-col gap-4 max-w-[420px]">
+      {
+        bioNotes.map((note, i) => (
+          <div
+            class="relative bg-[#F6E27A] border-[1.5px] border-ink/70 px-4 py-3 text-[13px] leading-[1.55] shadow-hard-2"
+            style={`transform:rotate(${i % 2 === 0 ? -1 : 1}deg);`}
+          >
+            <span
+              class="tape"
+              style={`left:${i % 2 === 0 ? "18px" : "auto"};right:${i % 2 === 0 ? "auto" : "18px"};top:-11px;background:rgba(236,30,121,.35);`}
+            />
+            {note}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

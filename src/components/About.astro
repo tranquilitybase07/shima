@@ -1,0 +1,79 @@
+---
+import { firstName, intro, skills } from "../data/portfolio";
+import ImageSlot from "./ImageSlot.astro";
+---
+
+<section
+  id="about"
+  class="relative text-center px-5 pt-5 pb-[70px] max-w-[900px] mx-auto"
+>
+  <div
+    class="absolute left-[6%] -top-[6px] font-script text-[20px]"
+    style="transform:rotate(-4deg);"
+  >
+    next me ↴
+  </div>
+
+  <div
+    class="inline-block border-[1.5px] border-ink px-4 py-[6px] font-semibold mb-[34px] shadow-hard-2 bg-paper"
+  >
+    what's up
+  </div>
+
+  <div class="relative">
+    <!-- Left polaroid -->
+    <div
+      class="absolute left-[-14%] top-[10px] bg-paper border-[1.5px] border-ink px-2 pt-2 pb-[26px] shadow-hard-3 w-[120px]"
+      style="transform:rotate(-7deg);"
+    >
+      <div class="relative w-full h-[100px]">
+        <ImageSlot id="polaroid_left" shape="rect" placeholder="me" />
+      </div>
+      <div class="font-script text-[15px] mt-1">it's me</div>
+    </div>
+
+    <!-- Right polaroid -->
+    <div
+      class="absolute right-[-14%] top-[20px] bg-paper border-[1.5px] border-ink px-2 pt-2 pb-[26px] shadow-hard-3 w-[120px]"
+      style="transform:rotate(6deg);"
+    >
+      <div class="relative w-full h-[100px]">
+        <ImageSlot id="polaroid_right" shape="rect" placeholder="workspace" />
+      </div>
+      <div class="font-script text-[15px] mt-1">my workspace</div>
+    </div>
+
+    <p
+      class="font-semibold leading-[1.3] mx-auto max-w-[560px] [text-wrap:pretty]"
+      style="font-size:clamp(24px,3.6vw,38px);"
+    >
+      I'm {firstName}
+      <span
+        class="inline-block w-[34px] h-[26px] bg-yellow border-[1.5px] border-ink rounded-[6px] align-middle"
+      ></span>
+      {intro}
+      <span
+        class="inline-block w-[30px] h-[26px] bg-pink rounded-full align-middle"
+      ></span>.
+    </p>
+  </div>
+
+  <div
+    class="flex flex-wrap justify-center gap-[10px] mt-[34px] max-w-[520px] mx-auto"
+  >
+    {
+      skills.map((s) => (
+        <div
+          class="flex items-center gap-2 border-[1.5px] border-ink rounded-[6px] px-3 py-[7px] font-semibold text-[15px] shadow-hard-2"
+          style={`background:${s.bg};color:${s.fg};`}
+        >
+          <span
+            class="inline-block w-[18px] h-[18px] rounded-[3px] opacity-85"
+            style={`background:${s.fg};`}
+          />
+          {s.name}
+        </div>
+      ))
+    }
+  </div>
+</section>

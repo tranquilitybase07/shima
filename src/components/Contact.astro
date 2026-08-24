@@ -1,0 +1,48 @@
+---
+import { firstName, contact } from "../data/portfolio";
+---
+
+<section id="contact" class="relative max-w-[1000px] mx-auto mb-[70px] px-5">
+  <!-- Floating comment card -->
+  <div
+    class="absolute left-[26px] -top-[30px] z-[3] bg-paper border-[1.5px] border-ink rounded-[10px] p-[12px_14px] w-[230px] shadow-hard-3"
+  >
+    <div class="font-mono text-[9px] tracking-[0.1em] text-[#888] mb-2">
+      COMMENT
+    </div>
+    <div class="flex gap-2">
+      <div
+        class="w-[26px] h-[26px] rounded-full bg-blue border-[1.5px] border-ink shrink-0"
+      >
+      </div>
+      <div>
+        <div class="font-bold text-[12px]">{firstName}</div>
+        <div class="text-[11px] leading-[1.4] text-[#333]">{contact}</div>
+      </div>
+    </div>
+    <div class="mt-2 font-mono text-[10px]">♥ 1</div>
+  </div>
+
+  <!-- Big call-to-action panel -->
+  <div
+    class="relative overflow-hidden border-[1.5px] border-ink rounded-[14px] bg-yellow px-5 py-[80px] shadow-hard-6"
+  >
+    <svg
+      viewBox="0 0 1000 300"
+      preserveAspectRatio="none"
+      class="absolute inset-0 w-full h-full"
+    >
+      <path fill="#4A3520" d="M0,300 L0,120 L120,60 L60,150 L200,90 L120,300 Z"></path>
+      <path fill="#4A3520" d="M1000,0 L1000,200 L880,250 L940,150 L800,220 L900,0 Z"></path>
+      <path fill="#4A3520" d="M420,300 L520,120 L470,180 L620,60 L560,300 Z"></path>
+    </svg>
+    <a
+      href="#top"
+      class="relative flex items-center justify-center gap-[14px] mx-auto bg-blue border-2 border-ink rounded-[12px] px-[30px] py-4 w-max shadow-hard-4"
+    >
+      <span class="text-[22px]">✦</span>
+      <span class="font-display" style="font-size:clamp(30px,5vw,54px);">CONTACT</span>
+      <span class="text-[22px]">✦</span>
+    </a>
+  </div>
+</section>

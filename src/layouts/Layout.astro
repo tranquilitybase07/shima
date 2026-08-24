@@ -1,0 +1,49 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  background?: "grid" | "ruled";
+}
+
+const {
+  title = "Arushima — Product Designer",
+  description = "Portfolio of Arushima, a UI/UX designer in New Delhi who gets excited about making complicated things simple.",
+  background = "grid",
+} = Astro.props;
+
+const paperClass = background === "ruled" ? "ruled-paper" : "grid-paper";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee&family=Pixelify+Sans:wght@400;500;600;700&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Caveat:wght@600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>{title}</title>
+  </head>
+  <body
+    class:list={[
+      "font-body text-ink min-h-screen relative overflow-x-hidden",
+      paperClass,
+    ]}
+  >
+    <slot />
+
+    <!-- Preline UI interactive components -->
+    <script>
+      import "preline/preline";
+    </script>
+  </body>
+</html>

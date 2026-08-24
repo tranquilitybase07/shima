@@ -1,0 +1,57 @@
+---
+import { name } from "../data/portfolio";
+
+const links = [
+  { href: "/about", label: "ABOUT" },
+  { href: "/case-study", label: "CASE STUDY" },
+  { href: "/#top", label: "PLAYGROUND" },
+];
+const socials = [
+  { href: "https://linkedin.com", label: "in", bg: "#3AC7F0" },
+  { href: "https://dribbble.com", label: "Dr", bg: "#EC1E79" },
+  { href: "https://github.com", label: "gh", bg: "#8BD450" },
+];
+---
+
+<footer class="border-t-[1.5px] border-ink bg-paper mt-10">
+  <div class="max-w-[1000px] mx-auto px-5 py-[40px]">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div>
+        <div class="font-display leading-none" style="font-size:clamp(28px,4vw,44px);">
+          {name}
+        </div>
+        <div class="font-mono text-[11px] tracking-[0.08em] mt-2 flex items-center gap-2">
+          <span class="text-blue">●</span> PRODUCT DESIGNER
+        </div>
+      </div>
+
+      <div class="flex flex-col items-start sm:items-end gap-3">
+        <div class="flex items-center gap-4 font-mono text-[11px] tracking-[0.06em]">
+          {links.map((l) => <a href={l.href}>{l.label}</a>)}
+        </div>
+        <div class="flex items-center gap-[8px]">
+          {
+            socials.map((s) => (
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="grid place-items-center w-[30px] h-[30px] rounded-full border-[1.5px] border-ink text-[11px] font-bold"
+                style={`background:${s.bg};color:#fff;`}
+              >
+                {s.label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="flex flex-wrap items-center justify-between gap-3 mt-8 pt-5 border-t border-ink/15 font-mono text-[10px] tracking-[0.06em] text-ink/60"
+    >
+      <span>© 2026 Arushima</span>
+      <span>✦ BUILT WITH ASTRO</span>
+    </div>
+  </div>
+</footer>
