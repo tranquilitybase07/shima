@@ -16,6 +16,7 @@ export interface Project {
   desc: string;
   top: string;
   slot: string;
+  tags: string[];
 }
 
 // Editable props (were DC "props" with defaults)
@@ -29,6 +30,12 @@ export const firstName = rawName.split(" ")[0];
 
 export const intro =
   "a UI/UX designer in New Delhi who gets excited about making complicated things simple";
+
+// About-section bio, rendered as two stacked lines.
+export const bio = [
+  "I'm a product designer with way too many Figma tabs open and opinions about button spacing.",
+  'I spend my days turning confusing flows into "oh, that was easy" moments.',
+];
 
 // Rotating palette applied to the skill chips
 const palette: { bg: string; fg: string }[] = [
@@ -45,8 +52,6 @@ const skillNames = [
   "Prototyping",
   "User Research",
   "Design Systems",
-  "Branding",
-  "Strategy",
 ];
 
 export const skills: Skill[] = skillNames.map((n, i) => ({
@@ -64,6 +69,7 @@ export const projects: Project[] = [
     desc: "When therapists spend less time clicking, they have more time for patients.",
     top: "84px",
     slot: "proj_1",
+    tags: ["HEALTHCARE", "WORKFLOW DESIGN"],
   },
   {
     num: "02",
@@ -74,6 +80,7 @@ export const projects: Project[] = [
     desc: 'From "I hate this creator" to "Can we show other colors?"',
     top: "120px",
     slot: "proj_2",
+    tags: ["E-COMMERCE", "MOBILE APP"],
   },
   {
     num: "03",
@@ -84,6 +91,7 @@ export const projects: Project[] = [
     desc: "Helping first-time homebuyers actually understand what they're looking at.",
     top: "156px",
     slot: "proj_3",
+    tags: ["REAL ESTATE", "WEB APP"],
   },
   {
     num: "04",
@@ -94,5 +102,6 @@ export const projects: Project[] = [
     desc: "Getting seven stakeholders to agree on what they're actually building.",
     top: "192px",
     slot: "proj_4",
+    tags: ["B2B SAAS", "STRATEGY"],
   },
 ];

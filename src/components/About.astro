@@ -1,77 +1,86 @@
 ---
-import { firstName, intro, skills } from "../data/portfolio";
+import { bio, skills } from "../data/portfolio";
 import ImageSlot from "./ImageSlot.astro";
+
+// Deliberately mismatched icon rectangle sizes for a playful, hand-placed feel
+const iconSizes = [
+  { w: 34, h: 20 },
+  { w: 18, h: 30 },
+  { w: 28, h: 26 },
+  { w: 22, h: 14 },
+];
 ---
 
 <section
   id="about"
-  class="relative text-center px-5 pt-5 pb-[70px] max-w-[900px] mx-auto"
+  class="relative flex flex-col items-center justify-center text-center px-5 py-[70px]"
+  style="min-height:calc(100dvh - 53px);"
 >
   <div
-    class="absolute left-[6%] -top-[6px] font-script text-[20px]"
+    class="absolute left-[6%] top-[40px] font-script text-[22px]"
     style="transform:rotate(-4deg);"
   >
     next me ↴
   </div>
 
+  <!-- Left polaroid — anchored just left of the centered text column -->
   <div
-    class="inline-block border-[1.5px] border-ink px-4 py-[6px] font-semibold mb-[34px] shadow-hard-2 bg-paper"
+    class="absolute left-1/2 top-1/2 bg-paper border-[1.5px] border-ink px-[10px] pt-[10px] pb-[30px] shadow-hard-4 w-[180px] hidden xl:block"
+    style="transform:translate(-610px,-50%) rotate(-7deg);"
+  >
+    <div class="relative w-full h-[150px]">
+      <ImageSlot id="polaroid_left" src="/its-me.jpg" alt="Arushima" shape="rect" placeholder="me" />
+    </div>
+    <div class="font-script text-[17px] mt-2">it's me</div>
+  </div>
+
+  <!-- Right polaroid — anchored just right of the centered text column -->
+  <div
+    class="absolute left-1/2 top-1/2 bg-paper border-[1.5px] border-ink px-[10px] pt-[10px] pb-[30px] shadow-hard-4 w-[180px] hidden xl:block"
+    style="transform:translate(430px,-50%) rotate(6deg);"
+  >
+    <div class="relative w-full h-[150px]">
+      <ImageSlot id="polaroid_right" shape="rect" placeholder="workspace" />
+    </div>
+    <div class="font-script text-[17px] mt-2">my workspace</div>
+  </div>
+
+  <div
+    data-reveal
+    class="inline-block border-[1.5px] border-ink px-5 py-[8px] font-semibold text-[18px] mb-[clamp(28px,5vh,56px)] shadow-hard-2 bg-paper"
   >
     what's up
   </div>
 
-  <div class="relative">
-    <!-- Left polaroid -->
-    <div
-      class="absolute left-[-14%] top-[10px] bg-paper border-[1.5px] border-ink px-2 pt-2 pb-[26px] shadow-hard-3 w-[120px]"
-      style="transform:rotate(-7deg);"
-    >
-      <div class="relative w-full h-[100px]">
-        <ImageSlot id="polaroid_left" shape="rect" placeholder="me" />
-      </div>
-      <div class="font-script text-[15px] mt-1">it's me</div>
-    </div>
-
-    <!-- Right polaroid -->
-    <div
-      class="absolute right-[-14%] top-[20px] bg-paper border-[1.5px] border-ink px-2 pt-2 pb-[26px] shadow-hard-3 w-[120px]"
-      style="transform:rotate(6deg);"
-    >
-      <div class="relative w-full h-[100px]">
-        <ImageSlot id="polaroid_right" shape="rect" placeholder="workspace" />
-      </div>
-      <div class="font-script text-[15px] mt-1">my workspace</div>
-    </div>
-
-    <p
-      class="font-semibold leading-[1.3] mx-auto max-w-[560px] [text-wrap:pretty]"
-      style="font-size:clamp(24px,3.6vw,38px);"
-    >
-      I'm {firstName}
-      <span
-        class="inline-block w-[34px] h-[26px] bg-yellow border-[1.5px] border-ink rounded-[6px] align-middle"
-      ></span>
-      {intro}
-      <span
-        class="inline-block w-[30px] h-[26px] bg-pink rounded-full align-middle"
-      ></span>.
-    </p>
-  </div>
+  <p
+    class="font-semibold leading-[1.3] mx-auto max-w-[820px] [text-wrap:balance]"
+    style="font-size:clamp(20px,2.6vw,34px);"
+  >
+    {bio[0]}
+    <span
+      class="inline-block w-[clamp(26px,2.4vw,34px)] h-[clamp(20px,1.9vw,28px)] bg-yellow border-[1.5px] border-ink rounded-[6px] align-middle"
+    ></span>
+    {bio[1]}
+    <span
+      class="inline-block w-[clamp(22px,2vw,30px)] h-[clamp(22px,2vw,30px)] bg-pink rounded-full align-middle"
+    ></span>
+  </p>
 
   <div
-    class="flex flex-wrap justify-center gap-[10px] mt-[34px] max-w-[520px] mx-auto"
+    class="grid grid-cols-1 sm:grid-cols-2 gap-[14px] mt-[clamp(32px,5vh,60px)] w-full max-w-[720px] mx-auto"
   >
     {
-      skills.map((s) => (
+      skills.map((s, i) => (
         <div
-          class="flex items-center gap-2 border-[1.5px] border-ink rounded-[6px] px-3 py-[7px] font-semibold text-[15px] shadow-hard-2"
-          style={`background:${s.bg};color:${s.fg};`}
+          data-reveal
+          class="flex items-center justify-between gap-3 border-[1.5px] border-ink rounded-[8px] px-5 py-[13px] font-semibold text-[clamp(18px,2vw,24px)] shadow-hard-3"
+          style={`background:${s.bg};color:${s.fg};--reveal-delay:${i * 90}ms;`}
         >
+          <span>{s.name}</span>
           <span
-            class="inline-block w-[18px] h-[18px] rounded-[3px] opacity-85"
-            style={`background:${s.fg};`}
+            class="inline-block rounded-[4px] opacity-85 shrink-0"
+            style={`background:${s.fg};width:${iconSizes[i % iconSizes.length].w}px;height:${iconSizes[i % iconSizes.length].h}px;`}
           />
-          {s.name}
         </div>
       ))
     }

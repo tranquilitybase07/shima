@@ -1,0 +1,94 @@
+---
+// First-load intro splash: types "Hey there!" then "Welcome!", then reveals the site.
+---
+
+<div
+  id="intro-overlay"
+  class="grid-paper fixed inset-0 z-[100] grid place-items-center"
+>
+  <div
+    class="bg-blue border-[1.5px] border-ink rounded-[10px] shadow-hard-3 px-[clamp(14px,2.4vw,22px)] py-[clamp(8px,1.4vw,12px)]"
+  >
+    <span
+      id="intro-text"
+      class="font-body font-semibold text-ink"
+      style="font-size:clamp(17px,2.6vw,26px);"></span
+    ><span
+      id="intro-cursor"
+      class="font-body font-semibold text-ink"
+      style="font-size:clamp(17px,2.6vw,26px);">|</span
+    >
+  </div>
+</div>
+
+<style>
+  #intro-cursor {
+    animation: introBlink 1s steps(1) infinite;
+  }
+  @keyframes introBlink {
+    50% {
+      opacity: 0;
+    }
+  }
+  #intro-overlay.is-hiding {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  const overlay = document.getElementById("intro-overlay");
+  const textEl = document.getElementById("intro-text");
+
+  if (overlay && textEl) {
+    const finish = () => {
+      overlay.remove();
+      document.documentElement.style.overflow = "";
+    };
+
+    {
+      document.documentElement.style.overflow = "hidden";
+      const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      const type = async (str: string, delay = 75) => {
+        for (let i = 1; i <= str.length; i++) {
+          textEl.textContent = str.slice(0, i);
+          await wait(delay);
+        }
+      };
+      const erase = async (delay = 45) => {
+        let s = textEl.textContent || "";
+        while (s.length) {
+          s = s.slice(0, -1);
+          textEl.textContent = s;
+          await wait(delay);
+        }
+      };
+
+      const dismiss = async () => {
+        overlay.classList.add("is-hiding");
+        await wait(500);
+        finish();
+      };
+
+      (async () => {
+        if (reduce) {
+          textEl.textContent = "Welcome!";
+          await wait(800);
+          await dismiss();
+          return;
+        }
+        await wait(300);
+        await type("Hey there!");
+        await wait(850);
+        await erase();
+        await wait(150);
+        await type("Welcome!");
+        await wait(950);
+        await dismiss();
+      })();
+    }
+  }
+</script>

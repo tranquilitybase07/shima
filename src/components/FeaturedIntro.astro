@@ -1,19 +1,27 @@
 ---
-// Section header that introduces the project stack.
+// Section header that introduces the project stack — fills its own screen.
 ---
 
-<section class="text-center px-5 pt-5 pb-10">
-  <div class="font-script text-[22px]" style="transform:rotate(-3deg);">
+<section
+  class="flex flex-col items-center justify-center text-center px-5 py-[70px]"
+  style="min-height:calc(100dvh - 53px);"
+>
+  <div class="font-script text-[24px]" style="transform:rotate(-3deg);">
     explore my work ↴
   </div>
+
   <h2
-    class="font-display leading-[0.9] my-[6px] uppercase"
-    style="font-size:clamp(40px,7vw,86px);"
+    data-reveal
+    class="font-pixel leading-[0.92] my-[clamp(12px,3vh,28px)] uppercase"
+    style="font-size:clamp(44px,8vw,104px);"
   >
     Featured<br />Works
   </h2>
+
   <div
+    data-reveal
     class="inline-block border-[1.5px] border-ink px-4 py-2 max-w-[300px] text-[12px] font-mono shadow-hard-2 bg-paper"
+    style="--reveal-delay:120ms;"
   >
     This is a showcase of what happens when curiosity drives the process.
   </div>

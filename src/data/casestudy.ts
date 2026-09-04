@@ -89,4 +89,16 @@ export const moreProjects: MoreProject[] = [
     desc: "Getting a new engineer from day one to shipping without the panic.",
     slot: "more_forge",
   },
+  {
+    date: "MAR 2, 2026",
+    title: "Tandem",
+    desc: "From \"who owns what\" to money that finally feels shared.",
+    slot: "more_tandem_2",
+  },
+  {
+    date: "JAN 2, 2026",
+    title: "Forge",
+    desc: "Getting a new engineer from day one to shipping without the panic.",
+    slot: "more_forge_2",
+  },
 ];

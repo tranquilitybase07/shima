@@ -1,16 +1,18 @@
 ---
-// Small tilted sticker label used to head each About section.
+// Bold rounded section label with an icon and a hard offset shadow.
 interface Props {
   bg?: string;
   fg?: string;
   rot?: number;
+  icon?: string;
 }
-const { bg = "#F4C020", fg = "#111", rot = -3 } = Astro.props;
+const { bg = "#F4C020", fg = "#111", rot = 0, icon } = Astro.props;
 ---
 
 <div
-  class="inline-block border-[1.5px] border-ink px-3 py-[4px] font-mono text-[11px] font-bold tracking-[0.08em] shadow-hard-2"
-  style={`background:${bg};color:${fg};transform:rotate(${rot}deg);`}
+  class="inline-flex items-center gap-[10px] border-2 border-ink rounded-[10px] px-4 py-[9px] font-mono text-[14px] font-bold tracking-[0.1em] uppercase shadow-hard-4"
+  style={`background:${bg};color:${fg};${rot ? `transform:rotate(${rot}deg);` : ""}`}
 >
+  {icon && <span aria-hidden="true" class="text-[13px] leading-none">{icon}</span>}
   <slot />
 </div>

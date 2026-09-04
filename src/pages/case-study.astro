@@ -2,14 +2,10 @@
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-import ImageSlot from "../components/ImageSlot.astro";
 import CaseHeader from "../components/casestudy/CaseHeader.astro";
-import CaseSection from "../components/casestudy/CaseSection.astro";
-import ResultStats from "../components/casestudy/ResultStats.astro";
 import MoreProjects from "../components/casestudy/MoreProjects.astro";
-import AboutTalk from "../components/about/AboutTalk.astro";
-import AboutContact from "../components/about/AboutContact.astro";
-import { sections } from "../data/casestudy";
+import LetsTalk from "../components/LetsTalk.astro";
+import Contact from "../components/Contact.astro";
 ---
 
 <Layout title="Wayline — Case Study" background="ruled">
@@ -17,23 +13,14 @@ import { sections } from "../data/casestudy";
 
   <CaseHeader />
 
-  <!-- Hero image -->
-  <div class="max-w-[900px] mx-auto px-5 pb-4">
-    <div
-      class="relative border-[1.5px] border-ink rounded-[8px] overflow-hidden shadow-hard-4"
-      style="height:420px;"
-    >
-      <ImageSlot id="cs_hero" shape="rect" placeholder="rider on transit" />
-    </div>
-  </div>
-
-  {sections.map((section) => <CaseSection section={section} />)}
-
-  <ResultStats />
   <MoreProjects />
 
-  <AboutTalk />
-  <AboutContact />
+  <LetsTalk />
+  <Contact />
 
   <Footer />
 </Layout>
+
+<script>
+  import "../scripts/reveal";
+</script>

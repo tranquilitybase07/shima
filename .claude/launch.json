@@ -2,9 +2,9 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "astro-dev",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "name": "shima-dev",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": ["-c", "export PATH=\"$HOME/.nvm/versions/node/v21.7.3/bin:$PATH\"; npm install --no-audit --no-fund && npm run dev"],
       "port": 4327
     }
   ]

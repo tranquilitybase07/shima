@@ -3,31 +3,48 @@ import ImageSlot from "../ImageSlot.astro";
 import { moreProjects } from "../../data/casestudy";
 ---
 
-<section class="max-w-[900px] mx-auto px-5 py-10">
-  <h2 class="font-script text-[22px] text-ink mb-5">more projects</h2>
+<section class="max-w-[1080px] mx-auto px-5 py-12">
+  <h2 class="font-script text-[22px] text-ink mb-7">more projects</h2>
 
-  <div class="grid gap-6 sm:grid-cols-2">
+  <div class="grid gap-x-10 gap-y-12 sm:grid-cols-2">
     {
       moreProjects.map((p) => (
         <a href="/case-study" class="block group">
-          <div class="flex">
-            <div class="inline-flex items-center gap-2 bg-[#EFE9DA] border-[1.5px] border-ink border-b-0 rounded-t-[8px] px-3 py-[5px] font-mono text-[10px] font-bold">
+          {/* Grey framed panel with a notched top-right corner */}
+          <div class="more-card relative bg-[#ececec] p-[clamp(16px,2vw,24px)] pt-[clamp(52px,6vw,60px)]">
+            <div class="absolute top-[20px] left-[24px] flex items-center gap-2 font-mono text-[11px] font-bold tracking-[0.06em]">
               <span>●</span> {p.date}
             </div>
-          </div>
-          <div class="border-[1.5px] border-ink rounded-b-[10px] rounded-tr-[10px] overflow-hidden shadow-hard-3 bg-[#EFE9DA] p-3">
-            <div class="relative border-[1.5px] border-ink rounded-[4px] overflow-hidden" style="height:210px;">
+            <div
+              class="relative overflow-hidden"
+              style="height:clamp(220px,26vw,330px);"
+            >
               <ImageSlot id={p.slot} shape="rect" placeholder="project" />
             </div>
-            <div class="text-center px-2 pt-4 pb-2">
-              <h3 class="font-bold text-[20px] m-0">{p.title}</h3>
-              <p class="text-[12px] leading-[1.5] text-ink/65 mt-1 max-w-[280px] mx-auto">
-                {p.desc}
-              </p>
-            </div>
+          </div>
+
+          {/* Title + description below the panel */}
+          <div class="text-center pt-6">
+            <h3
+              class="font-bold m-0 leading-[1.05]"
+              style="font-size:clamp(28px,3vw,44px);"
+            >
+              {p.title}
+            </h3>
+            <p class="text-[14px] leading-[1.55] text-ink/60 mt-3 max-w-[360px] mx-auto">
+              {p.desc}
+            </p>
           </div>
         </a>
       ))
     }
   </div>
 </section>
+
+<style>
+  /* Folded / notched top-right corner on the grey panel */
+  .more-card {
+    clip-path: polygon(0 0, 68% 0, 80% 44px, 100% 44px, 100% 100%, 0 100%);
+    filter: drop-shadow(0 6px 16px rgba(17, 17, 17, 0.12));
+  }
+</style>

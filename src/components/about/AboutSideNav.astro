@@ -1,0 +1,26 @@
+---
+// Left-edge sticky tab rail that jumps to the About sections.
+const tabs = [
+  { href: "#main-bio", label: "MAIN BIO", icon: "◉", bg: "#F4C020", fg: "#111" },
+  { href: "#story", label: "STORY", icon: "◆", bg: "#EC1E79", fg: "#fff" },
+  { href: "#work", label: "WORK", icon: "✦", bg: "#3AC7F0", fg: "#111" },
+];
+---
+
+<nav
+  class="hidden lg:flex fixed left-0 top-1/2 -translate-y-1/2 z-40 flex-col gap-3"
+  aria-label="About sections"
+>
+  {
+    tabs.map((t) => (
+      <a
+        href={t.href}
+        class="flex items-center gap-2 pl-[18px] pr-[16px] py-[9px] rounded-r-[12px] border-[1.5px] border-l-0 border-ink font-mono text-[12px] font-bold tracking-[0.1em] shadow-hard-3 transition-transform duration-150 hover:translate-x-[3px]"
+        style={`background:${t.bg};color:${t.fg};`}
+      >
+        <span aria-hidden="true">{t.icon}</span>
+        {t.label}
+      </a>
+    ))
+  }
+</nav>
