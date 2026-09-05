@@ -5,7 +5,7 @@ Guidance for working in this repository.
 ## What this is
 
 A playful, neo-brutalist **designer portfolio** for "Arushima", built with
-**Astro 5** (static output) + **Tailwind CSS v4** + **Preline UI**. It was
+**Astro 7** (static output) + **Tailwind CSS v4**. It was
 recreated from a Claude Design "Design Canvas" (`.dc.html`) file; the original
 React runtime was **not** carried over — only its data and behavior were ported.
 
@@ -44,13 +44,13 @@ src/
 ├── data/
 │   ├── portfolio.ts     # home: name, tagline, skills, featured projects
 │   ├── about.ts         # about: bio, story principles, work history
-│   └── casestudy.ts     # case study: Wayline meta, sections, stats, more-projects
+│   └── casestudy.ts     # legacy detail-page content (currently unused)
 ├── pages/
 │   ├── index.astro      # home  (background="grid")
 │   ├── about.astro      # /about  (background="ruled")
 │   └── case-study.astro # /case-study  (background="ruled")
 ├── layouts/
-│   └── Layout.astro     # <head>, fonts, Preline bootstrap; `background` prop
+│   └── Layout.astro     # SEO metadata, structured data, fonts; `background` prop
 ├── components/
 │   ├── Nav.astro        # shared; `active` prop highlights current page
 │   ├── Footer.astro     # shared
@@ -62,7 +62,7 @@ src/
 ├── scripts/
 │   └── floaters.ts      # cursor-repel drift on the hero sticker badges
 └── styles/
-    └── global.css       # Tailwind + Preline import, theme tokens, helpers
+    └── global.css       # Tailwind import, theme tokens, helpers
 ```
 
 ## Conventions
@@ -101,8 +101,6 @@ src/
 
 ## Known follow-ups (not yet done)
 
-- `PLAYGROUND` nav link is a placeholder (`/#top`); no page exists yet.
-- All four home project cards link to the single `/case-study` page. A dynamic
-  `src/pages/case-study/[slug].astro` template (one per project) is the natural
-  next step.
-- Portrait, project, and case-study photos are all placeholders.
+- The five portfolio projects link to their complete Behance case studies.
+- `SITE_URL` controls canonical URLs, sitemap entries, social metadata, and
+  `robots.txt`; it defaults to `https://arushima.vercel.app`.

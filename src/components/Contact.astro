@@ -28,7 +28,7 @@ import ImageSlot from "./ImageSlot.astro";
       CONTACT
     </div>
     <a
-      href="#top"
+      href="mailto:hello@arushima.design"
       class="inline-flex items-center gap-2 mt-6 font-mono font-bold tracking-[0.12em] text-[13px] border-b-2 border-ink pb-[3px]"
     >
       DROP A LINE ↗
@@ -52,7 +52,13 @@ import ImageSlot from "./ImageSlot.astro";
       <div
         class="relative w-[42px] h-[42px] rounded-full overflow-hidden border-[1.5px] border-ink shrink-0"
       >
-        <ImageSlot id="talk_avatar" src="/its-me.jpg" shape="circle" placeholder="" />
+        <ImageSlot
+          id="talk_avatar"
+          src="/arushi-portrait.jpg"
+          alt="Arushi outdoors in the mountains"
+          shape="circle"
+          placeholder=""
+        />
       </div>
       <div>
         <div class="font-bold text-[13px] leading-tight">{firstName}</div>

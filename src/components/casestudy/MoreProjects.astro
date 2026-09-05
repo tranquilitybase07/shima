@@ -1,39 +1,70 @@
 ---
 import ImageSlot from "../ImageSlot.astro";
-import { moreProjects } from "../../data/casestudy";
+import { projects } from "../../data/portfolio";
 ---
 
 <section class="max-w-[1080px] mx-auto px-5 py-12">
-  <h2 class="font-script text-[22px] text-ink mb-7">more projects</h2>
+  <h2 class="font-script text-[24px] text-ink mb-7">selected projects</h2>
 
   <div class="grid gap-x-10 gap-y-12 sm:grid-cols-2">
     {
-      moreProjects.map((p) => (
-        <a href="/case-study" class="block group">
-          {/* Grey framed panel with a notched top-right corner */}
-          <div class="more-card relative bg-[#ececec] p-[clamp(16px,2vw,24px)] pt-[clamp(52px,6vw,60px)]">
+      projects.map((p, i) => (
+        <a
+          href={p.href ?? "/case-study"}
+          target={p.href?.startsWith("http") ? "_blank" : undefined}
+          rel={p.href?.startsWith("http") ? "noopener noreferrer" : undefined}
+          class:list={[
+            "block group",
+            projects.length % 2 === 1 && i === projects.length - 1
+              ? "sm:col-span-2 sm:max-w-[510px] sm:w-full sm:mx-auto"
+              : "",
+          ]}
+          data-reveal
+          style={`--reveal-delay:${i * 70}ms;`}
+        >
+          {/* Framed panel with a notched top-right corner */}
+          <div
+            class="more-card relative p-[clamp(16px,2vw,22px)] pt-[54px] border-[1.5px] border-ink"
+            style={`background:${p.bg};color:${p.fg};`}
+          >
             <div class="absolute top-[20px] left-[24px] flex items-center gap-2 font-mono text-[11px] font-bold tracking-[0.06em]">
-              <span>●</span> {p.date}
+              <span>●</span> PROJECT {p.num} · {p.date}
             </div>
             <div
-              class="relative overflow-hidden"
-              style="height:clamp(220px,26vw,330px);"
+              class="relative overflow-hidden border-[1.5px] border-ink bg-paper"
+              style="height:clamp(220px,24vw,300px);"
             >
-              <ImageSlot id={p.slot} shape="rect" placeholder="project" />
+              <ImageSlot
+                id={`case_${p.slot}`}
+                src={p.image}
+                alt={p.imageAlt}
+                shape="rect"
+                placeholder="project"
+              />
             </div>
           </div>
 
           {/* Title + description below the panel */}
-          <div class="text-center pt-6">
+          <div class="text-center pt-5">
             <h3
               class="font-bold m-0 leading-[1.05]"
-              style="font-size:clamp(28px,3vw,44px);"
+              style="font-size:clamp(26px,3vw,38px);"
             >
               {p.title}
             </h3>
             <p class="text-[14px] leading-[1.55] text-ink/60 mt-3 max-w-[360px] mx-auto">
               {p.desc}
             </p>
+            <div class="flex flex-wrap justify-center gap-2 mt-4">
+              {p.tags.map((tag) => (
+                <span class="font-mono text-[9px] font-bold tracking-[0.08em] border-[1.5px] border-ink rounded-full px-3 py-[5px] bg-paper">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <span class="inline-block mt-5 font-mono text-[10px] font-bold tracking-[0.1em] border-b-[1.5px] border-ink pb-1">
+              VIEW ON BEHANCE ↗
+            </span>
           </div>
         </a>
       ))
@@ -46,5 +77,15 @@ import { moreProjects } from "../../data/casestudy";
   .more-card {
     clip-path: polygon(0 0, 68% 0, 80% 44px, 100% 44px, 100% 100%, 0 100%);
     filter: drop-shadow(0 6px 16px rgba(17, 17, 17, 0.12));
+  }
+
+  .group:hover .more-card {
+    transform: translateY(-4px) rotate(-0.4deg);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .more-card {
+      transition: transform 180ms ease;
+    }
   }
 </style>

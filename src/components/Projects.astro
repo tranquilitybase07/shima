@@ -32,7 +32,9 @@ const SLOT = 100 / projects.length;
               class="absolute z-10 flex items-center gap-[10px] font-mono font-bold tracking-[0.06em]"
               style={`top:clamp(28px,3vw,40px);left:calc(${li}% + clamp(22px,2.4vw,42px));font-size:clamp(15px,1.4vw,21px);`}
             >
-              <span aria-hidden="true">▤</span> PROJECT {p.num}
+              <span aria-hidden="true">▤</span>
+              <span class="hidden sm:inline">PROJECT</span>
+              <span>{p.num}</span>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-[1fr_1.15fr] flex-1 pt-[clamp(96px,9vw,132px)]">

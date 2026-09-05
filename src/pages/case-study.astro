@@ -8,15 +8,21 @@ import LetsTalk from "../components/LetsTalk.astro";
 import Contact from "../components/Contact.astro";
 ---
 
-<Layout title="Wayline — Case Study" background="ruled">
+<Layout
+  title="Case Studies — Arushima"
+  description="Explore Arushima's product design, UI/UX, and brand identity case studies."
+  image="/hatching-app.png"
+  imageAlt="A selection of Arushima's product design and UI/UX case studies"
+  background="ruled"
+>
   <Nav active="work" />
 
-  <CaseHeader />
-
-  <MoreProjects />
-
-  <LetsTalk />
-  <Contact />
+  <main id="main-content">
+    <CaseHeader />
+    <MoreProjects />
+    <LetsTalk />
+    <Contact />
+  </main>
 
   <Footer />
 </Layout>

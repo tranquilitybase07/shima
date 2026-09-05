@@ -2,7 +2,7 @@
 
 A neo-brutalist / playful designer portfolio, rebuilt as an
 [Astro](https://astro.build) site from a single Design-Canvas (`.dc.html`)
-landing page. Styling uses **Tailwind CSS v4** with the **Preline UI** library.
+landing page. Styling uses **Tailwind CSS v4**.
 
 ## Getting started
 
@@ -15,6 +15,19 @@ npm run dev      # http://localhost:4327
 npm run build    # static output in ./dist
 npm run preview  # preview the production build
 ```
+
+## Deployment
+
+The site is a fully static Astro build and is ready for Vercel's Astro preset.
+Set `SITE_URL` to the production origin before building; it controls canonical
+URLs, sitemap entries, social metadata, and `robots.txt`.
+
+```bash
+SITE_URL=https://arushima.vercel.app npm run build
+```
+
+Vercel should use Node.js 22.12 or newer, run `npm run build`, and publish
+`dist/`. No server adapter is required.
 
 ## Project structure
 
@@ -33,11 +46,11 @@ src/
 │   ├── Contact.astro       # Comment card + CTA panel
 │   └── ImageSlot.astro     # Static stand-in for the DC <image-slot> element
 ├── layouts/
-│   └── Layout.astro        # <head>, Google Fonts, Preline bootstrap
+│   └── Layout.astro        # SEO metadata, structured data, and Google Fonts
 ├── scripts/
 │   └── floaters.ts         # Cursor-repel drift animation for the badges
 ├── styles/
-│   └── global.css          # Tailwind + Preline + brand tokens & helpers
+│   └── global.css          # Tailwind brand tokens & helpers
 └── pages/
     └── index.astro         # Composes the page
 ```

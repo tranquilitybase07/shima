@@ -5,15 +5,44 @@ interface Props {
   title?: string;
   description?: string;
   background?: "grid" | "ruled";
+  image?: string;
+  imageAlt?: string;
 }
 
 const {
-  title = "Arushima — Product Designer",
+  title = "Arushima — Product & UI/UX Designer in New Delhi",
   description = "Portfolio of Arushima, a UI/UX designer in New Delhi who gets excited about making complicated things simple.",
   background = "grid",
+  image = "/arushi-portrait.jpg",
+  imageAlt = "Arushima, product and UI/UX designer in New Delhi",
 } = Astro.props;
 
 const paperClass = background === "ruled" ? "ruled-paper" : "grid-paper";
+const siteURL = Astro.site ?? Astro.url;
+const canonicalURL = new URL(Astro.url.pathname, siteURL);
+const socialImageURL = new URL(image, siteURL);
+const personImageURL = new URL("/arushi-portrait.jpg", siteURL);
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Arushima Dagar",
+  url: new URL("/", siteURL).href,
+  image: personImageURL.href,
+  jobTitle: "Product and UI/UX Designer",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "New Delhi",
+    addressCountry: "IN",
+  },
+  knowsAbout: [
+    "Product design",
+    "UI/UX design",
+    "Interaction design",
+    "User research",
+    "Design systems",
+    "Brand identity",
+  ],
+};
 ---
 
 <!doctype html>
@@ -22,7 +51,29 @@ const paperClass = background === "ruled" ? "ruled-paper" : "grid-paper";
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="author" content="Arushima Dagar" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Arushima — Design Portfolio" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={socialImageURL} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta property="og:locale" content="en_IN" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageURL} />
+    <meta name="twitter:image:alt" content={imageAlt} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,6 +83,7 @@ const paperClass = background === "ruled" ? "ruled-paper" : "grid-paper";
     />
 
     <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body
     class:list={[
@@ -39,11 +91,7 @@ const paperClass = background === "ruled" ? "ruled-paper" : "grid-paper";
       paperClass,
     ]}
   >
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <slot />
-
-    <!-- Preline UI interactive components -->
-    <script>
-      import "preline/preline";
-    </script>
   </body>
 </html>

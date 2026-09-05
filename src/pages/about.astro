@@ -10,21 +10,27 @@ import LetsTalk from "../components/LetsTalk.astro";
 import Contact from "../components/Contact.astro";
 ---
 
-<Layout title="About — Arushima" background="grid">
+<Layout
+  title="About Arushima — Product & UI/UX Designer"
+  description="Meet Arushima, a New Delhi product and UI/UX designer with experience at Zomato, Samsung R&D, and design teams across mobile products and visual systems."
+  background="grid"
+>
   <Nav active="about" />
   <AboutSideNav />
 
-  <header id="top" class="max-w-[860px] mx-auto px-5 pt-[50px] pb-4">
-    <h1 class="font-pixel m-0 leading-[0.9]" style="font-size:clamp(56px,12vw,120px);">
-      ABOUT
-    </h1>
-  </header>
+  <main id="main-content">
+    <header id="top" class="max-w-[860px] mx-auto px-5 pt-[50px] pb-4">
+      <h1 class="font-pixel m-0 leading-[0.9]" style="font-size:clamp(56px,12vw,120px);">
+        ABOUT
+      </h1>
+    </header>
 
-  <MainBio />
-  <Story />
-  <Work />
-  <LetsTalk />
-  <Contact />
+    <MainBio />
+    <Story />
+    <Work />
+    <LetsTalk />
+    <Contact />
+  </main>
 
   <Footer />
 </Layout>

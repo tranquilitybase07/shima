@@ -1,4 +1,6 @@
 ---
+import SocialIcon from "./SocialIcon.astro";
+
 // Sticky top navigation, shared across pages.
 // `active` highlights the current page's link with its accent color.
 interface Props {
@@ -13,16 +15,20 @@ const links = [
 ];
 
 const socials = [
-  { href: "https://linkedin.com", label: "in", bg: "#3AC7F0" },
-  { href: "https://dribbble.com", label: "Dr", bg: "#EC1E79" },
-  { href: "https://github.com", label: "gh", bg: "#8BD450" },
-];
+  { href: "https://linkedin.com", label: "LinkedIn", icon: "linkedin" as const, bg: "#3AC7F0" },
+  { href: "https://dribbble.com", label: "Dribbble", icon: "dribbble" as const, bg: "#EC1E79" },
+  { href: "https://instagram.com", label: "Instagram", icon: "instagram" as const, bg: "#8BD450" },
+] as const;
+
+const activeLink = links.find((link) => link.key === active) ?? links[0];
 ---
 
 <nav
-  class="sticky top-0 z-60 flex items-center justify-between bg-paper px-[18px] py-[10px] border-b-[1.5px] border-ink font-mono text-[11px] tracking-[0.05em]"
+  class="sticky top-0 z-60 bg-paper px-4 lg:px-[18px] py-[9px] lg:py-[10px] border-b-[1.5px] border-ink font-mono text-[11px] tracking-[0.05em]"
 >
-  <div class="flex items-center gap-[6px]">
+  <!-- Full desktop navigation -->
+  <div class="hidden lg:flex items-center justify-between">
+    <div class="flex items-center gap-[6px]">
     <!-- Concentric-arcs logo -->
     <a href="/" aria-label="Home" class="shrink-0 text-ink">
       <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true">
@@ -68,25 +74,99 @@ const socials = [
         );
       })
     }
+    </div>
+    <div class="flex items-center gap-[8px]">
+      {
+        socials.map((s) => (
+          <a
+            href={s.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={s.label}
+            class="grid place-items-center w-[30px] h-[30px] rounded-full border-[1.5px] border-ink font-bold"
+            style={`background:${s.bg};color:#fff;`}
+          >
+            <SocialIcon name={s.icon} size={14} />
+          </a>
+        ))
+      }
+      <a
+        href="#contact"
+        class="flex items-center gap-[5px] bg-paper border-[1.5px] border-ink rounded-[6px] px-[11px] py-[6px] font-bold"
+        >♥ CONTACT</a
+      >
+    </div>
   </div>
-  <div class="flex items-center gap-[8px]">
-    {
-      socials.map((s) => (
-        <a
-          href={s.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="grid place-items-center w-[30px] h-[30px] rounded-full border-[1.5px] border-ink text-[11px] font-bold"
-          style={`background:${s.bg};color:#fff;`}
-        >
-          {s.label}
-        </a>
-      ))
-    }
-    <a
-      href="#contact"
-      class="flex items-center gap-[5px] bg-paper border-[1.5px] border-ink rounded-[6px] px-[11px] py-[6px] font-bold"
-      >♥ CONTACT</a
+
+  <!-- Compact navigation for phones and tablets -->
+  <div class="flex lg:hidden items-center justify-between gap-3">
+    <a href="/" aria-label="Home" class="shrink-0 text-ink">
+      <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true">
+        <path d="M4 27a23 23 0 0 1 23-23" />
+        <path d="M4 27a15 15 0 0 1 15-15" />
+        <path d="M4 27a7 7 0 0 1 7-7" />
+      </svg>
+    </a>
+
+    <span
+      class="truncate px-3 py-[6px] rounded-full border-[1.5px] border-ink font-bold"
+      style={`background:${activeLink.accent};`}
     >
+      {activeLink.label}
+    </span>
+
+    <details class="mobile-menu relative ml-auto">
+      <summary
+        class="list-none grid place-items-center w-[38px] h-[34px] border-[1.5px] border-ink rounded-[7px] bg-paper shadow-hard-2 cursor-pointer"
+        aria-label="Open navigation menu"
+      >
+        <span class="menu-open text-[20px] leading-none" aria-hidden="true">☰</span>
+        <span class="menu-close hidden text-[20px] leading-none" aria-hidden="true">×</span>
+      </summary>
+
+      <div class="absolute right-0 top-[46px] w-[min(290px,calc(100vw-32px))] bg-paper border-[1.5px] border-ink rounded-[10px] shadow-hard-5 p-3">
+        <div class="grid gap-2">
+          {links.map((link) => (
+            <a
+              href={link.href}
+              class="flex items-center justify-between rounded-[7px] border-[1.5px] border-ink px-4 py-3 font-bold text-[12px]"
+              style={link.key === active ? `background:${link.accent};` : undefined}
+              aria-current={link.key === active ? "page" : undefined}
+            >
+              {link.label}
+              <span aria-hidden="true">↗</span>
+            </a>
+          ))}
+        </div>
+
+        <div class="flex items-center justify-between gap-3 mt-3 pt-3 border-t border-ink/20">
+          <div class="flex items-center gap-2">
+            {socials.map((social) => (
+              <a
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                class="grid place-items-center w-[34px] h-[34px] rounded-full border-[1.5px] border-ink"
+                style={`background:${social.bg};color:#fff;`}
+              >
+                <SocialIcon name={social.icon} size={15} />
+              </a>
+            ))}
+          </div>
+          <a href="#contact" class="font-bold border-b-[1.5px] border-ink pb-1">♥ CONTACT</a>
+        </div>
+      </div>
+    </details>
   </div>
 </nav>
+
+<style>
+  .mobile-menu[open] .menu-open {
+    display: none;
+  }
+
+  .mobile-menu[open] .menu-close {
+    display: inline;
+  }
+</style>

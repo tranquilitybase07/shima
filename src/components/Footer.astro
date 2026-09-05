@@ -1,5 +1,6 @@
 ---
 import { name } from "../data/portfolio";
+import SocialIcon from "./SocialIcon.astro";
 
 const links = [
   { href: "/about", label: "ABOUT" },
@@ -45,9 +46,7 @@ const links = [
             class="grid place-items-center w-[42px] h-[42px] rounded-full border-[1.5px] border-ink shadow-hard-2"
             style="background:#F4C020;color:#111;"
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.2 8.25h4.56V24H.2V8.25zM8.06 8.25h4.37v2.15h.06c.61-1.11 2.1-2.28 4.32-2.28 4.62 0 5.47 2.86 5.47 6.58V24h-4.56v-6.38c0-1.52-.03-3.48-2.2-3.48-2.2 0-2.54 1.66-2.54 3.37V24H8.06V8.25z" />
-            </svg>
+            <SocialIcon name="linkedin" />
           </a>
           <a
             href="https://dribbble.com"
@@ -57,10 +56,7 @@ const links = [
             class="grid place-items-center w-[42px] h-[42px] rounded-full border-[1.5px] border-ink shadow-hard-2"
             style="background:#EC1E79;color:#fff;"
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M5 5.6c3.9 4.6 11.4 6.1 16 4.6M2.4 13.3c6.6-2 11.4 1 13.9 6.6M8.7 2.6c4.4 5.8 6 12.8 5.4 18.7" />
-            </svg>
+            <SocialIcon name="dribbble" />
           </a>
           <a
             href="https://instagram.com"
@@ -70,11 +66,7 @@ const links = [
             class="grid place-items-center w-[42px] h-[42px] rounded-full border-[1.5px] border-ink shadow-hard-2"
             style="background:#8BD450;color:#111;"
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="5" />
-              <circle cx="12" cy="12" r="4" />
-              <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
-            </svg>
+            <SocialIcon name="instagram" />
           </a>
         </div>
       </div>
