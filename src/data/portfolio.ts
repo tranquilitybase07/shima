@@ -75,9 +75,9 @@ export const projects: Project[] = [
     slot: "proj_1",
     tags: ["BRAND IDENTITY", "BRAND GUIDELINES"],
     href: "https://www.behance.net/gallery/253272169/Branding-Project-Cafe-651",
-    image: "/cafe-651-branding.png",
+    image: "/cafe-651-branding.jpg",
     imageAlt: "Cafe 651 brand guidelines cover featuring its geometric logo and teal accent",
-    imageLabel: "CAFE-651.PNG",
+    imageLabel: "CAFE-651.JPG",
   },
   {
     num: "02",
@@ -120,9 +120,9 @@ export const projects: Project[] = [
     slot: "proj_4",
     tags: ["PRODUCT DESIGN", "FITNESS APP"],
     href: "https://www.behance.net/gallery/193703257/Fit-Flex-%28-fitness-app%29-UIUX",
-    image: "/fit-flex-app.png",
+    image: "/fit-flex-app.jpg",
     imageAlt: "Fit Flex mobile fitness app displayed on two phones",
-    imageLabel: "FIT-FLEX.PNG",
+    imageLabel: "FIT-FLEX.JPG",
   },
   {
     num: "05",
